@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+<div class="container">
+   <form class="form-inline profile justify-content-center" action="/search" method="POST">
+      <input class="form-control mr-2 main-search" id="hero" type="text" name="hero" placeholder="Hero/Villain Name" aria-label="Search">
+      <button class="btn btn-warning my-2 my-sm-0" type="submit">Search</button>
+   </form>
+</div>
+<div class="container mt-5 profile hero-search">
+   {% if not heroes %}
+      <h1 class="text-center mt-3">Sorry, no results</h1>
+   {% endif %}
+   {% if heroes %}
+      <h1 class="text-center result-text mt-3 mb-3"><span>Results for: </span>{{ hero }}</h1>
+      <h2 class="text-center result-text mt-3 mb-3">Click on an image below to view a hero/villian profile</h2>
+   {% endif %}
+   <!-- <div class="row"> -->
+      <div class="search-container">
+         {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+               {% for category, message in messages %}
+            <div class="alert border border-warning alert-{{ category }} alert-dismissible fade show" role="alert">
+                <span class="text-warning">{{ message }}</span>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+                </button>
+            </div>
+               {% endfor %}
+            {% endif %}
+         {% endwith %}
+         {% for hero in heroes %}
+         <div class="search-results">
+            <a class="hero-card" href="/profile/{{ hero.id }}"><img class="img-fluid img-border" src="{{ hero.image }}" alt="{{ hero.name }}"></a>
+         </div>
+         <!-- <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+         <a class="hero-card" href="/profile/{{ hero.id }}"><img class="img-fluid img-border hero-search" src="{{ hero.image }}" alt="{{ hero.name }}"></a>
+         </div> -->
+         {% endfor %}
+      </div>
+      
+   <!-- </div>   -->
+</div>
+   
+
+
+{% endblock %}

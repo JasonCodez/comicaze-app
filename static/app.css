@@ -1,0 +1,418 @@
+* {
+   padding: 0;
+   margin: 0;
+   box-sizing: border-box;
+}
+
+body {
+   background-image: linear-gradient(rgb(0, 0, 0, 0.9), rgba(0, 0, 0, 0.5)), url('/static/imgs/erik-mclean-27kCu7bXGEI-unsplash\ \(1\).jpg');
+   min-height: 100%;
+   background-repeat: no-repeat;
+   background-position: center;
+   background-size: cover;
+   background-attachment: fixed;
+   color: white;
+}
+
+.logo-name {
+   color: rgb(255, 115, 0);
+}
+
+.letter-i {
+   font-family: Arial, Helvetica, sans-serif;
+   color: rgb(255, 255, 255);
+}
+
+/* .nav-shadow {
+   box-shadow: 2px 3px 8px rgb(255, 115, 0);
+} */
+
+.nav-color {
+   background-color: rgb(255, 115, 0);
+}
+
+.container {
+   color: white;
+}
+
+.main-page {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+}
+
+.main-centered {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 100vh;
+}
+
+.background-cover {
+   height: 100vh;
+}
+
+.login,
+.upload {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   /* height: 100vh; */
+}
+
+.login-form,
+.register-form {
+   width: 60vw;
+   max-width: 450px;
+}
+
+@media only screen and (max-width: 450px) {
+   .login-form,
+   .register-form {
+      width: 90vw;
+   }
+}
+
+li {
+   list-style-type: none;
+   display: inline;
+   color: rgb(255, 255, 255);
+   text-decoration: none;
+}
+
+.hero-list {
+   display: block;
+}
+
+.hero-link {
+   color: white;
+}
+
+a:hover {
+   text-decoration: none;
+   color: rgb(255, 115, 0);
+}
+
+.biography {
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+}
+
+ul {
+   margin: 0;
+}
+
+.list-wrap {
+   display: flex;
+   justify-content: center;
+   width: 100%;
+   flex-wrap: wrap;
+}
+
+.list-wrap a {
+   color: white;
+}
+
+.list-wrap a:hover {
+   color: rgb(255, 115, 0);
+}
+
+.li-hero-list {
+   flex: 1 0 25%;
+}
+
+@media only screen and (max-width: 990px) {
+   .li-hero-list {
+      flex: 1 0 33%;
+   }
+}
+
+@media only screen and (max-width: 767px) {
+   .li-hero-list {
+      flex: 1 0 50%;
+      font-size: 1.25rem;
+   }
+}
+
+@media only screen and (max-width: 480px) {
+   .li-hero-list {
+      flex: 1 0 100%;
+      font-size: 2rem;
+   }
+}
+
+.hero-list-marvel {
+   width: 40%;
+}
+
+.hero-list-dc {
+   width: 25%;
+}
+
+@media only screen and (max-width: 836px) {
+   .hide-for-mobile {
+      display: none;
+   }
+}
+
+@media only screen and (min-width: 768px) {
+   .hide-for-desktop {
+      display: none;
+   }
+}
+
+/* @media only screen and (max-width: 563px) {
+   .full-width-search {
+      width: 50%;
+   }
+} */
+
+.profile {
+   background-color: rgba(0, 0, 0, 0.8);
+   padding: 10px;
+   list-style-type: none;
+   /* color: white; */
+   border-radius: 5px;
+   border: 2px solid rgb(255, 104, 0);
+   box-shadow: 0px 5px 8px rgb(0, 0, 0);
+}
+
+.profile-list {
+   display: block;
+}
+
+.flash-message {
+   background-color: rgba(0, 0, 0, 0.8);
+   padding: 10px;
+   list-style-type: none;
+   /* color: white; */
+   border-radius: 5px;
+   box-shadow: 0px 5px 8px rgb(0, 0, 0);
+}
+
+
+.hero-list-profile {
+   background-color: rgba(0, 0, 0, 0.8);
+   padding: 10px;
+   list-style-type: none;
+   /* color: white; */
+   border-radius: 5px;
+   border: 2px solid rgb(255, 104, 0);
+   box-shadow: 0px 5px 8px rgb(0, 0, 0);
+}
+
+.hero-img {
+   position: relative;
+   margin-left: 0;
+}
+
+.hero-card:hover {
+   outline: 5px solid rgb(255, 115, 0);
+   outline-offset: -5px;
+}
+
+@media only screen and (max-width: 767px) {
+   .hero-img {
+      position: relative;
+      margin-bottom: 20px;
+   }
+}
+
+.hero-directory {
+   text-align: center;
+}
+
+.comic-logo {
+   position: absolute;
+   top: 2px;
+   left: 17px;
+   width: 20%;
+}
+
+.profile-search {
+   display: flex;
+   justify-content: flex-end;
+   padding: 10px 0px;
+   list-style-type: none;
+   color: white;
+}
+
+.user-image {
+   border-radius: 50%;
+   height: 40px;
+   border: 1px solid white;
+   margin-right: 10px;
+}
+
+.user-image-profile {
+   border-radius: 50%;
+   border: 2px solid white;
+   width: 15vw;
+   min-width: 100px;
+   max-width: 200px;
+}
+
+.change-photo {
+   max-width: 200px;
+}
+
+@media only screen and (min-width: 280px) {
+   .user-image-profile {
+      width: 50vw;
+   }
+   .top-text {
+      font-size: 2rem;
+   }
+
+   .full-name {
+      font-size: 1.5rem;
+   }
+
+   .user-details {
+      text-align: center;
+   }
+   .user-name {
+      font-size: 1rem;
+   }
+
+   .user-email {
+      font-size: 1rem;
+   }
+   .user-details-title {
+      text-align: center;
+   }
+   .profile-btn {
+      display: block;
+      margin: 0;
+      text-align: center;
+      width: 100%;
+      margin-top: 10px;
+   }
+}
+
+@media only screen and (min-width: 400px) {
+   .change-photo {
+      width: 30vw;
+   }
+   .full-name {
+      font-size: 2rem;
+   }
+   .top-text {
+      font-size: 2.5rem;
+   }
+}
+
+@media only screen and (min-width: 768px) {
+   .user-details-title {
+      font-size: 5.9vw;
+   }
+   .user-name,
+   .user-email {
+      font-size: 2.5vw;
+   }
+}
+.img-border {
+   border: 2px solid rgb(255, 255, 255);
+}
+
+@media only screen and (min-width: 992px) {
+   .user-details-title {
+      font-size: 50px;
+   }
+   .user-name,
+   .user-email {
+      font-size: 25px;
+   }
+}
+
+.main-text,
+span {
+   color: rgb(255, 115, 0);
+}
+
+.search-text {
+   color: rgb(0, 0, 0);
+}
+
+.search-container {
+   display: flex;
+   justify-content: space-evenly;
+   flex-wrap: wrap;
+}
+
+.search-results {
+   flex: 0 1 24%;
+}
+
+@media only screen and (min-width: 280px) {
+   .result-text {
+      font-size: 7vw;
+   }
+   .hero-list-dc {
+      width: 50vw;
+   }
+   .hero-list-marvel {
+      width: 70vw;
+   }
+
+}
+
+@media only screen and (min-width: 576px) {
+   .result-text {
+      font-size: 4vw;
+   }
+   .hero-list-marvel {
+      width: 60vw;
+   }
+}
+
+@media only screen and (min-width: 768px) {
+   .hero-list-dc {
+      max-width: 350px;
+   }
+   .result-text {
+      font-size: 3.5vw;
+   }
+}
+
+@media only screen and (min-width: 992px) {
+   .result-text {
+      font-size: 30px;
+   }
+   .hero-list-marvel {
+      max-width: 600px;
+   }
+}
+
+
+
+@media only screen and (max-width: 992px) {
+   .search-results {
+      flex: 0 0 33%;
+   }
+}
+
+@media only screen and (max-width: 576px) {
+   .search-results {
+      flex: 0 0 49%;
+   }
+}
+
+@media only screen and (max-width: 575px) {
+   .search-results {
+      flex: 0 0 49%
+   }
+}
+
+@media only screen and (max-width: 345px) {
+   .search-results {
+      flex: 0 0 100%
+   }
+}
+
+.stats {
+   box-shadow: 2px 5px 8px rgb(0, 0, 0);
+}

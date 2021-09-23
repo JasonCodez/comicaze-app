@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+   <form class="form-inline profile justify-content-center" action="/search" method="POST">
+      <input class="form-control mr-2 main-search" id="hero" type="text" name="hero" placeholder="Hero/Villain Name" aria-label="Search">
+      <button class="btn btn-warning my-2 my-sm-0" type="submit">Search</button>
+   </form>
+   <div class="login">
+      
+      <h1 class="mt-5">Contribute to {{ hero.name }}  </h1>
+
+      <form class="profile login-form mt-5" method="POST">
+
+      {{ form.hidden_tag() }}
+
+      {% for field in form
+      if field.widget.input_type != 'hidden' %}
+      <p>
+         {{ field.label }}
+         {{ field(autocomplete="off", class_="form-control") }}
+
+         {% for error in field.errors %}
+         {{ error }}
+         {% endfor %}
+      </p>
+      {% endfor %}
+
+      <button class="btn btn-md btn-outline-warning btn-block" type="submit">Submit for Review</button>
+         </div>
+      </form>
+      
+</div>
+{% endblock %}

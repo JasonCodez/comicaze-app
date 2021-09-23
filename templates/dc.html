@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}DC Heroes and Villains{% endblock %}
+
+{% block content %}
+   
+<div class="container">
+   <form class="form-inline profile justify-content-center" action="/search" method="POST">
+      <input class="form-control mr-2 main-search" id="hero" type="text" name="hero" placeholder="Hero/Villain Name" aria-label="Search">
+      <button class="btn btn-warning my-2 my-sm-0" type="submit">Search</button>
+   </form>
+   <div class="text-center">
+      <img class="img-fluid hero-list-dc mt-5 mb-3" src="/static/imgs/DC_Comics_logo.svg.png" alt="DC Logo">
+   </div>     
+   <h1 class="hero-directory result-text text-warning">Heroes/Villains</h1>
+   <div class="hero-list-profile">
+      <div>
+         <ul class="list-wrap">
+            {% for hero in heroes %}
+               <li class="li-hero-list pl-5"><a href="/profile/{{ hero.id }}">{{ hero.name }}</a></li>
+            {% endfor %}
+         </ul>
+      </div>     
+   </div> 
+</div>
+{% endblock %}

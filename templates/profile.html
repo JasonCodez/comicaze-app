@@ -1,0 +1,268 @@
+{% extends 'base.html' %}
+
+{% block title %}Hero data{% endblock %}
+
+{% block content %}
+<div class="container">
+   <form class="profile form-inline justify-content-center" action="/search">
+      <input class="form-control mr-2 main-search" id="hero" type="search" name="hero" placeholder="Hero/Villain Name" aria-label="Search">
+      <button class="btn btn-warning my-2" type="submit">Search</button>
+   </form>
+   <div class="row navbar navbar-expand-md">
+      <div>
+         <h1 class="text-warning mt-5">{{ hero.name }}</h1>
+      </div>
+   </div>
+   <div class="row profile">
+      <div class="col-lg-5 col-md-6">
+         <img class="img-fluid img-border hero-img" src="{{ hero.image }}" alt="{{ hero.name }}">
+            {% if hero.publisher == "DC Comics" %}
+               <img class="comic-logo img-fluid" src="/static/imgs/DC_Comics_logo.svg.png" alt="">
+            {% elif hero.publisher == "Marvel Comics" %}
+               <img class="comic-logo img-fluid" src="/static/imgs/Marvel_Logo.svg.png" alt="">
+            {% endif %}
+      </div>
+      <div class="biography col-lg-7 col-md-6">
+         <ul>
+            <h4 class="text-warning"><strong><u>Biography</u></strong></h4>
+
+            {% if hero.full_name != "" %}
+               <li><span><strong>Full Name</strong>:</span> {{ hero.full_name }} </li><br>
+            {% endif %}
+               <li><span><strong>Alter Egos</strong>:</span> {{ hero.alter_egos }} </li><br>
+            {% if "-" not in hero.aliases %}
+               <li><span><strong>Aliases</strong>:</span> {{ hero.aliases.replace(hero.aliases[0],'').replace(hero.aliases[hero.aliases|length - 1], '').replace(',', ' | ') }} </li><br>
+            {% endif %}
+            {% if hero.birthplace != "-" %}
+               <li><span><strong>Birthplace</strong>:</span> {{ hero.birthplace }} </li><br>
+            {% endif %}
+            {% if hero.first_appearance != "-" %}
+               <li><span><strong>First Appearance</strong>:</span> {{ hero.first_appearance }} </li><br>
+            {% endif %}
+            {% if hero.publisher != "-" %}
+               <li><span><strong>Publisher</strong>:</span> {{ hero.publisher }} </li><br>
+            {% endif %}
+            {% if hero.alignment != "-" %}
+               <li><span><strong>Alignment</strong>:</span> {{ hero.alignment }} </li><br>
+            {% endif %}
+
+         </ul>
+         <ul class="mt-4">
+            
+            <h3 class="text-warning"><strong>Help us fill in the blanks!</strong></h3>
+            <p>
+               Do you have information that could help us?
+               Click on a contribute link and fill out the form!
+               We'll review your resource and if accepted, we'll credit you with the find!
+            </p>
+            {% if g.user %}
+               {% if hero.full_name == "" %}
+               <li><span><strong>Full Name</strong>:</span> <a href="/contribute/{{ hero.id }}/{{ attr["full name"] }}" class="badge badge-warning">Contribute</a></li><br>
+               {% endif %}
+               {% if "-" in hero.aliases %}
+               <li><span><strong>Aliases</strong>:</span> <a href="/contribute/{{ hero.id }}/{{ attr["aliases"] }}" class="badge badge-warning">Contribute</a></li><br>
+               {% endif %}
+               {% if hero.birthplace == "-" %}
+               <li><span><strong>Birthplace</strong>:</span> <a href="/contribute/{{ hero.id }}/{{ attr["birthplace"] }}" class="badge badge-warning">Contribute</a></li><br>
+               {% endif %}
+               {% if hero.first_appearance == "-" %}
+               <li><span><strong>First Appearance</strong>:</span> <a href="/contribute/{{ hero.id }}/{{ attr["first appearance"] }}" class="badge badge-warning">Contribute</a></li><br>
+               {% endif %}
+               {% if hero.publisher == "-" %}
+               <li><span><strong>Publisher</strong>:</span> <a href="/contribute/{{ hero.id }}/{{ attr["publisher"] }}" class="badge badge-warning">Contribute</a></li><br>
+               {% endif %}
+               {% if hero.alignment == "-" %}
+               <li><span><strong>Alignment</strong>:</span> <a href="/contribute/{{ hero.id }}/{{ attr["alignment"] }}" class="badge badge-warning">Contribute</a></li><br>
+               {% endif %}
+               {% if hero.gender == "-" %}
+               <li><span><strong>Gender</strong>:</span> <a href="/contribute/{{ hero.id }}/{{ attr["gender"] }}" class="badge badge-warning">Contribute</a></li><br>
+               {% endif %}
+               {% if "-" in hero.race or hero.race == "null" %}
+               <li><span><strong>Race</strong>:</span> <a href="/contribute/{{ hero.id }}/{{ attr["race"] }}" class="badge badge-warning">Contribute</a></li><br>
+               {% endif %}
+               {% if "-" in hero.height %}
+               <li><span><strong>Height</strong>:</span> <a href="/contribute/{{ hero.id }}/{{ attr["height"] }}" class="badge badge-warning">Contribute</a></li><br>
+               {% endif %}
+               {% if "-" in hero.weight %}
+               <li><span><strong>Weight</strong>:</span> <a href="/contribute/{{ hero.id }}/{{ attr["weight"] }}" class="badge badge-warning">Contribute</a></li><br>
+               {% endif %}
+               {% if hero.eye_color == "-" %}
+               <li><span><strong>Eye Color</strong>:</span> <a href="/contribute/{{ hero.id }}/{{ attr["eye color"] }}" class="badge badge-warning">Contribute</a></li><br>
+               {% endif %}
+               {% if hero.hair_color == "-" %}
+               <li><span><strong>Hair Color</strong>:</span> <a href="/contribute/{{ hero.id }}/{{ attr["hair color"] }}" class="badge badge-warning">Contribute</a></li><br>
+               {% endif %}
+               {% if hero.occupation == "-" %}
+               <li><span><strong>Occupation</strong>:</span> <a href="/contribute/{{ hero.id }}/{{ attr["occupation"] }}" class="badge badge-warning">Contribute</a></li><br>
+               {% endif %}
+               {% if hero.base.startswith("-") %}
+               <li><span><strong>Base</strong>:</span> <a href="/contribute/{{ hero.id }}/{{ attr["base"] }}" class="badge badge-warning">Contribute</a></li><br>
+               {% endif %}
+               {% if hero.affiliation == "-" %}
+               <li><span><strong>Affiliations</strong>:</span> <a href="/contribute/{{ hero.id }}/{{ attr["affiliation"] }}" class="badge badge-warning">Contribute</a></li><br>
+               {% endif %}
+               {% if hero.relatives == "-" %}
+               <li><span><strong>Relatives</strong>:</span> <a href="/contribute/{{ hero.id }}/{{ attr["relatives"] }}" class="badge badge-warning">Contribute</a></li><br>
+               {% endif %}
+               {% if hero.intelligence == "-" or hero.intelligence == "null" %}
+               <li><span><strong>Intelligence</strong>:</span> <a href="/contribute/{{ hero.id }}/{{ attr["intelligence"] }}" class="badge badge-warning">Contribute</a></li><br>
+               {% endif %}
+               {% if hero.strength == "-" or hero.strength == "null" %}
+               <li><span><strong>Strength</strong>:</span> <a href="/contribute/{{ hero.id }}/{{ attr["strength"] }}" class="badge badge-warning">Contribute</a></li><br>
+               {% endif %}
+               {% if hero.speed == "-" or hero.speed == "null" %}
+               <li><span><strong>Speed</strong>:</span> <a href="/contribute/{{ hero.id }}/{{ attr["speed"] }}" class="badge badge-warning">Contribute</a></li><br>
+               {% endif %}
+               {% if hero.durability == "-" or hero.durability == "null" %}
+               <li><span><strong>Durability</strong>:</span> <a href="/contribute/{{ hero.id }}/{{ attr["durability"] }}" class="badge badge-warning">Contribute</a></li><br>
+               {% endif %}
+               {% if hero.power == "-" or hero.power == "null" %}
+               <li><span><strong>Power</strong>:</span> <a href="/contribute/{{ hero.id }}/{{ attr["power"] }}" class="badge badge-warning">Contribute</a></li><br>
+               {% endif %}
+               {% if hero.combat == "-" or hero.combat == "null" %}
+               <li><span><strong>Combat</strong>:</span> <a href="/contribute/{{ hero.id }}/{{ attr["combat"] }}" class="badge badge-warning">Contribute</a></li><br>
+               {% endif %}
+               {% else %}
+               {% if hero.full_name == "" %}
+               <li><span><strong>Full Name</strong>:</span> <a href="#" class="badge badge-warning">Contribute</a></li><br>
+               {% endif %} 
+               {% if "-" in hero.aliases %}
+               <li><span><strong>Aliases</strong>:</span> <a href="#" class="badge badge-warning">Contribute</a></li><br>
+               {% endif %}  
+               {% if hero.birthplace == "-" %}
+               <li><span><strong>Birthplace</strong>:</span> <a href="#" class="badge badge-warning">Contribute</a></li><br>
+               {% endif %}
+               {% if hero.first_appearance == "-" %}
+               <li><span><strong>First Appearance</strong>:</span> <a href="#" class="badge badge-warning">Contribute</a></li><br>
+               {% endif %}
+               {% if hero.publisher == "-" %}
+               <li><span><strong>Publisher</strong>:</span> <a href="#" class="badge badge-warning">Contribute</a></li><br>
+               {% endif %}
+               {% if hero.alignment == "-" %}
+               <li><span><strong>Alignment</strong>:</span> <a href="#" class="badge badge-warning">Contribute</a></li><br>
+               {% endif %}
+               {% if hero.gender == "-" %}
+               <li><span><strong>Gender</strong>:</span> <a href="#" class="badge badge-warning">Contribute</a></li><br>
+               {% endif %}
+               {% if "-" in hero.race or hero.race == "null" %}
+               <li><span><strong>Race</strong>:</span> <a href="#" class="badge badge-warning">Contribute</a></li><br>
+               {% endif %}
+               {% if "-" in hero.height %}
+               <li><span><strong>Height</strong>:</span> <a href="#" class="badge badge-warning">Contribute</a></li><br>
+               {% endif %}
+               {% if "-" in hero.weight %}
+               <li><span><strong>Weight</strong>:</span> <a href="#" class="badge badge-warning">Contribute</a></li><br>
+               {% endif %}
+               {% if hero.eye_color == "-" %}
+               <li><span><strong>Eye Color</strong>:</span> <a href="#" class="badge badge-warning">Contribute</a></li><br>
+               {% endif %}
+               {% if hero.hair_color == "-" %}
+               <li><span><strong>Hair Color</strong>:</span> <a href="#" class="badge badge-warning">Contribute</a></li><br>
+               {% endif %}
+               {% if hero.occupation == "-" %}
+               <li><span><strong>Occupation</strong>:</span> <a href="#" class="badge badge-warning">Contribute</a></li><br>
+               {% endif %}
+               {% if hero.base == "-" %}
+               <li><span><strong>Base</strong>:</span> <a href="#" class="badge badge-warning">Contribute</a></li><br>
+               {% endif %}
+               {% if hero.affiliation == "-" %}
+               <li><span><strong>Affiliations</strong>:</span> <a href="#" class="badge badge-warning">Contribute</a></li><br>
+               {% endif %}
+               {% if hero.relatives == "-" %}
+               <li><span><strong>Relatives</strong>:</span> <a href="#" class="badge badge-warning">Contribute</a></li><br>
+               {% endif %}
+               {% if "null" in hero.intelligence %}
+               <li><span><strong>Intelligence</strong>:</span> <a href="#" class="badge badge-warning">Contribute</a></li><br>
+               {% endif %}
+               {% if "null" in hero.strength %}
+               <li><span><strong>Strength</strong>:</span> <a href="#" class="badge badge-warning">Contribute</a></li><br>
+               {% endif %}
+               {% if "null" in hero.speed %}
+               <li><span><strong>Speed</strong>:</span> <a href="#" class="badge badge-warning">Contribute</a></li><br>
+               {% endif %}
+               {% if "null" in hero.durability %}
+               <li><span><strong>Durability</strong>:</span> <a href="#" class="badge badge-warning">Contribute</a></li><br>
+               {% endif %}
+               {% if "null" in hero.power %}
+               <li><span><strong>Power</strong>:</span> <a href="#" class="badge badge-warning">Contribute</a></li><br>
+               {% endif %}
+               {% if "null" in hero.combat %}
+               <li><span><strong>Combat</strong>:</span> <a href="#" class="badge badge-warning">Contribute</a></li><br>
+               {% endif %}
+               <h4 class="mt-4">You must be logged in to contribute!</h4>
+               <p>Don't have an account? <a class="text-warning" href="/register">Create one here!</a></p>
+            {% endif %}
+         </ul>
+      </div>
+   </div>
+   <div class="row profile stats mb-5"> 
+      <div class="col-xs-6 col-sm-6 col-md-3 mb-5">
+         <ul>
+            <h4 class="text-warning"><strong><u>Powerstats</u></strong></h4>
+               {% if not "null" in hero.intelligence %}
+                  <li><span><strong>Intelligence</strong>: </span>{{ hero.intelligence }}</li><br>
+               {% endif %}
+               {% if not "null" in hero.strength %}
+                  <li><span><strong>Strength</strong>: </span>{{ hero.strength }}</li><br>
+               {% endif %}
+               {% if not "null" in hero.speed %}
+                  <li><span><strong>Speed</strong>: </span>{{ hero.speed }}</li><br>
+               {% endif %}
+               {% if not "null" in hero.durability %}
+                  <li><span><strong>Durability</strong>: </span>{{ hero.durability }}</li><br>
+               {% endif %}
+               {% if not "null" in hero.power %}
+                  <li><span><strong>Power</strong>: </span>{{ hero.power }}</li><br>
+               {% endif %}
+               {% if not "null" in hero.combat %}
+                  <li><span><strong>Combat</strong>: </span>{{ hero.combat }}</li><br>
+               {% endif %}
+         </ul>
+      </div>
+      <div class="col-xs-6 col-sm-6 col-md-3 mb-5">
+         <ul>
+            <h4 class="text-warning"><strong><u>Appearance</u></strong></h4>
+               {% if hero.gender != "-" %}
+                  <li><span><strong>Gender</strong>: </span>{{ hero.gender }}</li><br>
+               {% endif %}
+               {% if not hero.race.startswith("null") %}
+                  <li><span><strong>Race</strong>: </span>{{ hero.race }}</li><br>
+               {% endif %}
+               {% if "-" not in hero.height %}
+                  <li><span><strong>Height</strong>: </span>{{ hero.height.replace(hero.height[0], '').replace(hero.height[hero.height|length - 1], '') }}</li><br>
+               {% endif %}
+               {% if "-" not in hero.weight %}
+                  <li><span><strong>Weight</strong>: </span>{{ hero.weight.replace(hero.weight[0], '').replace(hero.weight[hero.weight|length - 1], '') }}</li><br>
+               {% endif %}
+               {% if hero.eye_color != "-" %}
+                  <li><span><strong>Eye Color</strong>: </span>{{ hero.eye_color }}</li><br>
+               {% endif %}
+               {% if hero.hair_color != "-" %}
+                  <li><span><strong>Hair Color</strong>: </span>{{ hero.hair_color }}</li><br>
+               {% endif %}
+         </ul>
+      </div>
+      <div class="col-xs-6 col-sm-6 col-md-3 mb-5">
+         <ul>
+            <h4 class="text-warning"><strong><u>Work</u></strong></h4>
+               {% if hero.occupation != "-" %}
+                  <li><span><strong>Occupation</strong>: </span> {{ hero.occupation }}</li><br>
+               {% endif %}
+               {% if hero.base != "-" %}
+                  <li><span><strong>Base</strong>: </span> {{ hero.base }}</li><br>
+               {% endif %}
+         </ul>
+      </div>
+      <div class="col-xs-6 col-sm-6 col-md-3 mb-5">
+         <ul>
+            <h4 class="text-warning"><strong><u>Connections</u></strong></h4>
+               {% if hero.affiliation != "-" %}
+                  <li><span><strong>Affiliations</strong>: </span> {{ hero.affiliation }}</li><br>
+               {% endif %}
+               {% if hero.relatives != "-" %}
+                  <li><span><strong>Relatives</strong>: </span> {{ hero.relatives }}</li><br>
+               {% endif %}
+         </ul>
+      </div>
+   </div> 
+{% endblock %}

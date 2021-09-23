@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Homepage{% endblock %}
+
+{% block content %}
+<div class="container">
+   {% with messages = get_flashed_messages(with_categories=true) %}
+         {% if messages %}
+            {% for category, message in messages %}
+               <div class="alert profile flash-message border border-success alert-{{ category }} alert-dismissible fade show" role="alert">
+                  <span class="text-success">{{ message }}</span>
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+                  </button>
+               </div>
+            {% endfor %}
+         {% endif %}
+      {% endwith %}
+</div>
+<div class="container main-centered mt">
+   <div class="profile p-4">
+      <h1 class="text-center">Welcome to <span>Comicaze</span> (<em>kaa·mih·kaa·zee</em>)</h1>
+      <p class="text-center">
+         <span>Comicaze</span> is a community driven database application that stores information for over 700 heroes and villains across multiple comic universes!
+         Any missing data from any character can be contributed by YOU! With your help, we can make <span>Comicaze</span> be the best it can be!
+      </p>
+      <p class="text-center">Lets start off with a search! C'mon, give it a go!</p>
+      <form class="form-inline justify-content-center" action="/search" method="POST">
+         <input class="form-control mr-2 main-search" id="hero" type="text" name="hero" placeholder="Hero/Villain Name" aria-label="Search">
+         <button class="btn btn-warning my-2 my-sm-0" type="submit">Search</button>
+      </form>
+      <p class="text-center mt-3">Don't know who you're looking for? <a class="badge badge-warning px-2 py-2" href="/heroes">Check out the list!</a></p>
+      <p class="text-center mt-3">Not a member yet? <a class="badge badge-success px-2 py-2" href="/register">Sign Up Here!</a></p>
+   </div>
+</div>
+{% endblock %}

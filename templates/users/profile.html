@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+<div class="container">
+   <form class="form-inline profile justify-content-center" action="/search" method="POST">
+      <input class="form-control mr-2 main-search" id="hero" type="text" name="hero" placeholder="Hero/Villain Name" aria-label="Search">
+      <button class="btn btn-warning my-2 my-sm-0" type="submit">Search</button>
+   </form>
+<h1 class="text-center mt-3 top-text mb-3">{{ g.user.username }}'s profile</h1>
+<div class="profile">
+   <div class="row">
+      <div class="col col-sm-6 col-md-6 col-lg-6 text-center">
+         <img class="img-fluid user-image-profile mt-3" src="{{ g.user.image_url }}" alt="{{ g.user.username}}'s profile image">
+         <div>
+            <a class="badge badge-warning mt-2 px-2 py-2 change-photo" href="../upload">Change photo</a>   
+         </div>
+         <div>
+            <h2 class="full-name mt-2"><span>{{ g.user.first_name }} {{ g.user.last_name }}</span></h2>
+         </div>
+      </div>
+      <div class="col-sm-6 col-md-6 col-lg-6">
+         <div>
+            <h2 class="user-details-title text-warning mt-3"><u>User Details</u></h2>
+            <div class="user-details">
+               <p class="mb-0 user-name"><span>Username:</span> {{ g.user.username }}</p>
+               <p class="mb-0 user-email"><span>Email:</span> {{ g.user.email }}</p>
+            </div>
+            
+         </div>
+      </div>
+   </div>
+   <div class="row mt-4">
+      <form class="col-md-6" action="/users/edit">
+         <button class="btn btn-warning profile-btn">Edit</button>
+      </form>
+      <form class="col-md-6" action="/users/delete" method="POST">
+         <button class="btn btn-danger profile-btn">Delete</button>
+      </form>
+   </div>
+</div>  
+</div>
+   
+{% endblock %}
