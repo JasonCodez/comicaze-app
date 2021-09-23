@@ -6,7 +6,8 @@ from werkzeug.utils import secure_filename
 from models import connect_db, db, User, Hero, Contribute
 from forms import LoginForm, PhotoForm, RegisterForm, ContributeForm, UserEditForm
 from secret import api_key
-from wtforms_validators import ValidationError
+import os
+
 
 BASE_URL = f"https://superheroapi.com/api/{api_key}"
 
@@ -21,8 +22,8 @@ uploads = os.path.join('static', 'uploads')
 app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql:///hero_db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["DEBUG_TB_INTERCEPT_REDIRECTS"] = False
-# app.config["SQLALCHEMY_ECHO"] = True
-app.config["SECRET_KEY"] = "abc123"
+app.config["SQLALCHEMY_ECHO"] = True
+app.config["SECRET_KEY"] = os.environ.get('SECRET_KEY', 'hellosecret2')
 
 
 connect_db(app)
