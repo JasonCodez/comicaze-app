@@ -6,7 +6,6 @@ from werkzeug.utils import secure_filename
 from models import connect_db, db, User, Hero, Contribute
 from forms import LoginForm, PhotoForm, RegisterForm, ContributeForm, UserEditForm
 from secret import api_key
-import os
 
 
 BASE_URL = f"https://superheroapi.com/api/{api_key}"
@@ -19,7 +18,7 @@ app = Flask(__name__)
 uploads = os.path.join('static', 'uploads')
 
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql:///hero_db"
+app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get('DATABASE_URL', "postgresql:///hero_db") 
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["DEBUG_TB_INTERCEPT_REDIRECTS"] = False
 app.config["SQLALCHEMY_ECHO"] = True
