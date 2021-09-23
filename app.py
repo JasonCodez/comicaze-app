@@ -7,7 +7,6 @@ from models import connect_db, db, User, Hero, Contribute
 from forms import LoginForm, PhotoForm, RegisterForm, ContributeForm, UserEditForm
 from secret import api_key
 
-
 BASE_URL = f"https://superheroapi.com/api/{api_key}"
 
 CURR_USER_KEY = "curr_user"
