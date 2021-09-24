@@ -38,7 +38,7 @@ def add_user_to_g():
 
     else:
         g.user = None
-        
+
 
 @app.errorhandler(404)
 def not_found(e):
@@ -224,7 +224,8 @@ def upload():
         ))
         user.image_url = f"/static/uploads/{filename}"
         db.session.commit()
-        return redirect(url_for('upload'))
+        flash(f"File uploaded successfully!", "success")
+        return redirect(f"/users/profile/{user.id}")
 
    return render_template('upload.html', form=form)
 
