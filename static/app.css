@@ -276,10 +276,12 @@ ul {
    }
    .user-name {
       font-size: 1rem;
+      text-align: center;
    }
 
    .user-email {
       font-size: 1rem;
+      text-align: center;
    }
    .user-details-title {
       text-align: center;
@@ -307,7 +309,7 @@ ul {
 
 @media only screen and (min-width: 768px) {
    .user-details-title {
-      font-size: 5.9vw;
+      font-size: 5vw;
    }
    .user-name,
    .user-email {
@@ -320,7 +322,7 @@ ul {
 
 @media only screen and (min-width: 992px) {
    .user-details-title {
-      font-size: 50px;
+      font-size: 45px;
    }
    .user-name,
    .user-email {
