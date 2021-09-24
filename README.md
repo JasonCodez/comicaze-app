@@ -6,7 +6,7 @@ Comicaze is a community driven database application that stores data from over 7
 ### User contributions  
 Users that have created an account and are logged in, have the ability to contribute to any missing information for a character. After submission, information sent from the user will be reviewed for addition to the respective character.
 ### User profile
-On successful sign up, a profile will be generated for the for the user and may personalize it with their photo.
+On successful sign up, a profile will be generated for the user and may personalize it with their photo.
 ### Search
 A search bar that retrieves data from the database in "like" terms. For instance, a user can search for "Bat" and get all results that have "Bat" in their name. It is also case insensitive. A search term must be entered for a successful request.
 # User flow
