@@ -225,7 +225,7 @@ def upload():
         user.image_url = f"/static/uploads/{filename}"
         db.session.commit()
         flash(f"File uploaded successfully!", "success")
-        return redirect(f"/users/profile/{user.id}")
+        return redirect(f"/users/{user.id}")
 
    return render_template('upload.html', form=form)
 
