@@ -1,6 +1,5 @@
 from flask import Flask, render_template, jsonify, redirect, request, session, flash, g, url_for
 from flask_debugtoolbar import DebugToolbarExtension
-import requests
 import os
 from werkzeug.utils import secure_filename
 from models import connect_db, db, User, Hero, Contribute
@@ -274,20 +273,7 @@ def contribute_form(id, attr):
    if not g.user:
       flash(f"Access unauthorized", "danger")
       return redirect('/')
-
-
-   form = ContributeForm()
-
-   if form.validate_on_submit():
-
-      contribution = Contribute(value = form.value.data, url=form.resource.data, user_id=g.user.id)
-
-      db.session.add(contribution)
-      db.session.commit()
-      flash(f"Thank you!, your contribution is under review. If accepted, we'll update the missing information and credit you with the help!", "success")
-      return redirect('/')
    
-   hero = Hero.query.get(id)
    attr = {
       "name": "name",
       "full name": "full name",
@@ -314,10 +300,31 @@ def contribute_form(id, attr):
       "publisher": "publisher",
       "alignment": "alignment"
    }
+
    
+   attrValue = None
+
+   for val in attr.values():
+      
+      if val in get_url:
+         attrValue = val
+      return attrValue
+
+   form = ContributeForm()
+
+   if form.validate_on_submit():
+
+      contribution = Contribute(attrValue=attrValue, value = form.value.data, url=form.resource.data, user_id=g.user.id)
+
+      db.session.add(contribution)
+      db.session.commit()
+      flash(f"Thank you!, your contribution is under review. If accepted, we'll update the missing information and credit you with the help!", "success")
+      return redirect('/')
+   
+   hero = Hero.query.get(id)
    
 
-   return render_template('contribute.html', hero=hero, form=form, attr=attr)
+   return render_template('contribute.html', hero=hero, form=form, attr=attr, attrValue=attrValue)
 
 @app.route('/search', methods=["GET", "POST"])
 def search_results():

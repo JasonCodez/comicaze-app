@@ -2,7 +2,6 @@ from enum import unique
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from sqlalchemy.orm import backref
-import sqlalchemy.exc
 
 
 
@@ -93,6 +92,7 @@ class Contribute(db.Model):
    __tablename__ = "contributions"
 
    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+   attribute = db.Column(db.Text)
    value = db.Column(db.Text, nullable=False)
    url = db.Column(db.Text, nullable=False)
    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
